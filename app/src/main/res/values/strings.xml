@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Fast Ordering</string>
+
+    <string name="login">Inicia sesión</string>
+    <string name="registrar">Registro</string>
+    <string name="registro">Por favor llene los datos para hacer el registro</string>
+    <string name="principal">Información \n Fast Ordering es una aplicación diseñada para agilizar
+        el proceso de toma y comunicación de un pedido en un establecimiento publico, especificamente en lugares de comidas preparadas. \n
+        Se pueden agrerar dos tipos de roles, cocinero y mesero. El primero recibirá las ordenes que el segundo envía por medio
+        de la aplicación.</string>
+    <string name="perfil">Mi Perfil</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="confcontra">Confirme contraseña</string>
+    <string name="correo">Correo</string>
+    <string name="Bregistro">Registrar</string>
+    <string name="blogin">Login</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.isabel.apppractica2.PerfilActivity"
+    android:orientation="vertical"
+    android:layout_margin="10sp"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:src="@drawable/user"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="@string/perfil"
+        android:id="@+id/tPerfil"
+        android:layout_margin="10sp"
+        android:textSize="20sp"
+        android:textColor="@color/mygreen"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:id="@+id/tMostrar"
+        android:layout_margin="10sp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.isabel.apppractica2.SplashActivity"
+    android:orientation="vertical"
+
+    android:background="@color/myothergreen"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_margin="10sp"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:src="@drawable/logo"
+
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_margin="10sp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.2"
+        android:src="@drawable/letra2"
+
+        />
+
+</LinearLayout>

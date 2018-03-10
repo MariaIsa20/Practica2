@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.isabel.apppractica2.MainActivity"
+    android:orientation="vertical"
+    android:layout_margin="10sp"
+    >
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:src="@drawable/logo"
+        />
+
+
+    <TextView
+        android:id="@+id/tLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_weight="0.05"
+        android:text="@string/login"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:hint="@string/usuario"
+        android:id="@+id/eUsuario"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:hint="@string/contraseña"
+        android:id="@+id/eContraseña"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:text="@string/blogin"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mygreen"
+        android:layout_gravity="center"
+        android:id="@+id/bLogin"
+        android:onClick="Login"
+        android:textAllCaps="false"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:text="@string/registrar"
+        android:layout_gravity="center"
+        android:onClick="Registro"
+        android:id="@+id/tcRegistro"
+        android:textSize="20sp"
+
+        android:textColor="@color/mygreen"
+
+        />
+
+
+</LinearLayout>
