@@ -42,6 +42,7 @@
         android:layout_weight="1"
         android:hint="@string/contraseña"
         android:id="@+id/eNContraseña"
+        android:inputType="textPassword"
         
         />
     <EditText
@@ -50,6 +51,7 @@
         android:layout_weight="1"
         android:hint="@string/confcontra"
         android:id="@+id/econfcontra"
+        android:inputType="textPassword"
         />
 
     <Button
