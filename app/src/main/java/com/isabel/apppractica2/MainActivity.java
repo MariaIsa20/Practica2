@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         eContraseña = findViewById(R.id.eContraseña);
         //tTemporal = findViewById(R.id.tTemporal);
 
-
         SpannableString texto = new SpannableString(getString(R.string.registrar));
         texto.setSpan(new UnderlineSpan(), 0, texto.length(), 0);
         tcRegistro.setText(texto);
