@@ -61,6 +61,7 @@ public class RegistroActivity extends AppCompatActivity {
             Datosalogin.putExtra("confirmacionR", Confirmacion);
             Datosalogin.putExtra("correoR", Correo);
             setResult(RESULT_OK, Datosalogin);
+
             finish();
         }
     }

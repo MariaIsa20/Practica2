@@ -44,7 +44,7 @@
         android:layout_weight="0.05"
         android:hint="@string/contraseña"
         android:id="@+id/eContraseña"
-        android:inputType="textWebPassword"
+        android:inputType="textPassword"
         />
 
     <Button

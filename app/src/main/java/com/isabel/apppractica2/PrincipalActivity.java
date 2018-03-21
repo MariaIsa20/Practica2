@@ -45,7 +45,7 @@ public class PrincipalActivity extends AppCompatActivity {
             APerfil.putExtra("usuarioP",user);
             APerfil.putExtra("contraseñaP",pass);
             APerfil.putExtra("correoP",correo);
-            setResult(RESULT_OK,APerfil);
+            //setResult(RESULT_OK,APerfil);
             startActivityForResult(APerfil,78);
             //startActivity(APerfil);
 
@@ -59,13 +59,13 @@ public class PrincipalActivity extends AppCompatActivity {
 //            Intent ALogin = new Intent();
 //            startActivity(ALogin);
 //            finish();
-            // si doy cerrar sesion en principal, deberia devolver a login con los datos
-            Intent Datosalogin = new Intent(PrincipalActivity.this,MainActivity.class);
-            Datosalogin.putExtra("usuarioP", user);
-            Datosalogin.putExtra("contraseñaP", pass);
-            Datosalogin.putExtra("correoP", correo);
-            setResult(RESULT_OK, Datosalogin);
-            //startActivityForResult(Datosalogin, 78);
+//            // si doy cerrar sesion en principal, deberia devolver a login con los datos
+//            Intent Datosalogin = new Intent(PrincipalActivity.this,MainActivity.class);
+//            Datosalogin.putExtra("usuarioP", user);
+//            Datosalogin.putExtra("contraseñaP", pass);
+//            Datosalogin.putExtra("correoP", correo);
+//            setResult(RESULT_OK, Datosalogin);
+//            //startActivityForResult(Datosalogin, 78);
             finish();
 
         }
@@ -75,7 +75,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //******************** recibo de perfil *********************//
-        if(requestCode == 78 && resultCode == RESULT_OK ){
+        if(requestCode == 78 /*&& resultCode == RESULT_OK*/ ){
 
             user = data.getExtras().getString("usuarioP");
             pass = data.getExtras().getString("contraseñaP");

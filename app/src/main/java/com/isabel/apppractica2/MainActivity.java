@@ -37,14 +37,6 @@ public class MainActivity extends AppCompatActivity {
         texto.setSpan(new UnderlineSpan(), 0, texto.length(), 0);
         tcRegistro.setText(texto);
 
-//        Bundle extra = getIntent().getExtras();
-//        user = extra.getString("usuariocerrarPerf");
-//        pass = extra.getString("contraseñacerrarPerf");
-//        correo = extra.getString("correocerrarPerf");
-//
-//        tTemporal.setText("vengo de perfil que cerro" + user);
-
-
     }
 
     public void Login(View view) {
@@ -63,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 Aprincipal.putExtra("usuarioP", user);
                 Aprincipal.putExtra("contraseñaP", pass);
                 Aprincipal.putExtra("correoP", correo);
-                setResult(RESULT_OK, Aprincipal);
+                //setResult(RESULT_OK, Aprincipal);
                 //finish();
                 startActivityForResult(Aprincipal,34); //espero respuesta de principal
                 //finish();
@@ -76,8 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();//cambiar
 
             }
-        }
 
+            eUsuario.setText(null);
+            eContraseña.setText(null);
+
+        }
 
     }
     ////////////************** REGISTRO ********************//////////////
@@ -89,22 +84,27 @@ public class MainActivity extends AppCompatActivity {
             //startActivity(Aregistro);
              startActivityForResult(Aregistro,56); //start registro con ese codigo
 
-        }
+             eUsuario.setText(null);
+             eContraseña.setText(null);
+
+
+         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // ********** Resultado que viene de registro **********//
-        if(requestCode == 56 && resultCode == RESULT_OK ){
+        if(requestCode == 56 /*&& resultCode == RESULT_OK*/ ){
 
             user = data.getExtras().getString("usuarioR");
             pass = data.getExtras().getString("contraseñaR");
             correo = data.getExtras().getString("correoR");
 
+
            // tTemporal.setText(user + "\n" + pass);
         }
         ////******************* vengo de cerrar sesion en principal ********************//
-        else if(requestCode == 34 && resultCode == RESULT_OK ){
+        else if(requestCode == 34 && resultCode == RESULT_OK){
 
             user = data.getExtras().getString("usuarioP");
             pass = data.getExtras().getString("contraseñaP");
@@ -112,9 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
            // tTemporal.setText("vengo de principal" + user + "\n" + pass);
         }
-
-
-
 
         super.onActivityResult(requestCode, resultCode, data);
     }

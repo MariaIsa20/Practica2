@@ -34,6 +34,7 @@
         android:layout_weight="1"
         android:hint="@string/correo"
         android:id="@+id/ecorreo"
+        android:inputType="textEmailAddress"
         />
     
     <EditText

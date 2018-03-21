@@ -45,13 +45,12 @@ public class PerfilActivity extends AppCompatActivity {
             APrincipal.putExtra("usuarioP",user);
             APrincipal.putExtra("contraseñaP",pass);
             APrincipal.putExtra("correoP",correo);
-            setResult(RESULT_OK,APrincipal);
+            //setResult(RESULT_OK,APrincipal);
             //startActivityForResult(APrincipal,90);
             startActivity(APrincipal);
 
             finish();
-
-
+            //onBackPressed();
             //Intent APrincipal = new Intent(PerfilActivity.this,PrincipalActivity.class);
             //startActivity(APrincipal);
             //finish();
@@ -72,8 +71,5 @@ public class PerfilActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 }
