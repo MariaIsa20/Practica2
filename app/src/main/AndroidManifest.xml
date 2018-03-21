@@ -22,4 +22,6 @@
         <activity android:name=".PerfilActivity"></activity>
     </application>
 
+    <uses-sdk android:minSdkVersion="15" />
+
 </manifest>
