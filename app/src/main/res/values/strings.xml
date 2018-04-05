@@ -15,4 +15,9 @@
     <string name="correo">Correo</string>
     <string name="Bregistro">Registrar</string>
     <string name="blogin">Login</string>
+    <string name="facebook_app_id">176781472972009</string>
+    <string name="fb_login_protocol_scheme">fb176781472972009</string>
+    <string name="roles">Elija un rol</string>
+    <string name="mesero">Mesero</string>
+    <string name="cocina">Cocina</string>
 </resources>
