@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(i,LOGIN_CON_GOOGLE);
             }
         });
-
+/// con Facebook
         signFacebook.setReadPermissions("email","public_profile");
 
         signFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "voy a principal",Toast.LENGTH_SHORT).show();
                     goPrincipalActivity();
                 } else {
                     Toast.makeText(MainActivity.this, "Autenticacion con Facebook no exitosa",Toast.LENGTH_SHORT).show();
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
-
+//// con Google
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -286,7 +287,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     private void goPrincipalActivity(){
-        Intent i = new Intent(MainActivity.this,PrincipalActivity.class);
+        //Intent i = new Intent(MainActivity.this,PruebaActivity.class);
+        Intent i = new Intent(MainActivity.this,PrincipalActivity.class); ////OJO cambiar a esto !!!!!!!!!!!!!!!!!
         startActivity(i);
         finish();
     }

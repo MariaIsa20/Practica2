@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.isabel.apppractica2.TabActivity">
+
+    <item android:id="@+id/mPrincipal" android:title="Principal"></item>
+    <item android:id="@+id/mPerfil" android:title="Perfil"></item>
+    <item android:id="@+id/mCerrar" android:title="Cerrar Sesión"></item>
+
+</menu>
