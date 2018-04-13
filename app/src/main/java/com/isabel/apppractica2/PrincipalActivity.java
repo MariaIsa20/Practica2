@@ -21,7 +21,15 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.isabel.apppractica2.model.usuarios;
 import com.squareup.picasso.Picasso;
+
+import java.security.Principal;
 
 public class PrincipalActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -52,6 +60,8 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
       //  tTemporal2.setText(user);
 
         inicializar();
+
+
     }
 
     private void inicializar() {
@@ -110,18 +120,18 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-////////////////////**************PERFIL*****************/////////
+///////////////////*//**************PERFIL*****************//*////////
         if(id == R.id.mPerfil){
-            //**********+ voy a perfil con los datos ****************************//
+            /*//**********+ voy a perfil con los datos ****************************//*/
 //            Intent APerfil = new Intent(PrincipalActivity.this,PerfilActivity.class);
 //            APerfil.putExtra("usuarioP",user);
 //            APerfil.putExtra("contraseñaP",pass);
@@ -137,7 +147,7 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
             finish();
 
 
-///////////*********CERRAR*************/////////////////////
+//////////*//*********CERRAR*************//*////////////////////
         }
         else if (id == R.id.mCerrar){
             //Intent ALogin = new Intent(PrincipalActivity.this,MainActivity.class);
@@ -152,6 +162,7 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
 //            setResult(RESULT_OK, Datosalogin);
 //            //startActivityForResult(Datosalogin, 78);
             firebaseAuth.signOut();
+
             if (Auth.GoogleSignInApi != null) {
                 Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -175,7 +186,7 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
     public void Mesero(View view) {
         Intent i = new Intent(PrincipalActivity.this,TabActivity.class);
         startActivity(i);
@@ -183,6 +194,9 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
     }
 
     public void Cocina(View view) {
+        Intent i = new Intent(PrincipalActivity.this,CocinaActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

@@ -100,9 +100,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         inicializar();
 
-
-
-
     }
 
     /////***** Firebase ********///
@@ -166,10 +163,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "voy a principal",Toast.LENGTH_SHORT).show();
+                    Log.d("Login con Facebook","Voy a principal");
+                    //Toast.makeText(MainActivity.this, "voy a principal",Toast.LENGTH_SHORT).show();
                     goPrincipalActivity();
                 } else {
-                    Toast.makeText(MainActivity.this, "Autenticacion con Facebook no exitosa",Toast.LENGTH_SHORT).show();
+                    Log.d("Login con Facebook","Autenticacion o exitosa");
+                    //Toast.makeText(MainActivity.this, "Autenticacion con Facebook no exitosa",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -203,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
         else {
 
-            Toast.makeText(MainActivity.this,"autenticacion con google no exitosa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Autenticación con Google no exitosa", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -217,6 +216,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStop() {
         super.onStop();
         firebaseAuth.removeAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        firebaseAuth.signOut();
     }
 
     public void Login(View view) {
@@ -277,18 +282,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                            goPrincipalActivity();
                         }
                         else {
-                            Toast.makeText(MainActivity.this, "cuenta NO log creada", Toast.LENGTH_SHORT).show();
+                            Log.d("Login","Cuenta no creada");
+                            //Toast.makeText(MainActivity.this, "cuenta NO log creada", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-
-
-
     private void goPrincipalActivity(){
         //Intent i = new Intent(MainActivity.this,PruebaActivity.class);
         Intent i = new Intent(MainActivity.this,PrincipalActivity.class); ////OJO cambiar a esto !!!!!!!!!!!!!!!!!
+        /// AQUI VA CREARUSUARIO, LO QUE MIRA SI YA EXISTE EL USUARIO
         startActivity(i);
         finish();
     }

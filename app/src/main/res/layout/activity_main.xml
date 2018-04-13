@@ -35,9 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.05"
-        android:hint="@string/usuario"
+        android:hint="@string/correo"
         android:id="@+id/eUsuario"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         />
     <EditText
         android:layout_width="match_parent"
@@ -46,6 +46,7 @@
         android:hint="@string/contraseña"
         android:id="@+id/eContraseña"
         android:inputType="textPassword"
+        android:maxLength="10"
         />
 
     <Button

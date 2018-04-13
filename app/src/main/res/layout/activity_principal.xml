@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_margin="10sp"
         android:gravity="center"
         >
@@ -22,7 +22,7 @@
             android:text="@string/roles"
             android:id="@+id/tPrincipal"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="25sp"
 
 
             />
@@ -31,37 +31,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_margin="10sp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="80sp"
+            android:background="@drawable/menu"
             android:backgroundTint="@color/mygreen"
             android:text="@string/mesero"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="25sp"
-            android:layout_gravity="top"
+           android:layout_gravity="center"
             android:id="@+id/bMesero"
             android:onClick="Mesero"
+            android:layout_margin="20sp"
 
             />
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="80sp"
+            android:background="@drawable/cocina"
             android:backgroundTint="@color/mygreen"
             android:text="@string/cocina"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="25sp"
-            android:layout_gravity="top"
+            android:layout_gravity="center"
             android:id="@+id/bCocina"
             android:onClick="Cocina"
+            android:layout_margin="20sp"
 
             />
 

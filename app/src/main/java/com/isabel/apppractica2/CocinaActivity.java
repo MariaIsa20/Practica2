@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
@@ -20,15 +17,9 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.picasso.Picasso;
 
-public class PerfilActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class CocinaActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    TextView tPerfil, tMostrar;
-    ImageView Iperfil;
-    String user, pass, correo;
-
-    //    ////******** Componentes para usar Firebase **********/////
     private FirebaseAuth firebaseAuth; //maneja la autenticacion
     private FirebaseAuth.AuthStateListener authStateListener; //listener que escucha constantemente el usuario
     private GoogleApiClient googleApiClient;
@@ -36,24 +27,11 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
-
-        tPerfil = findViewById(R.id.tPerfil);
-        tMostrar = findViewById(R.id.tMostrar);
-        Iperfil = findViewById(R.id.user);
-
-//****************** Recibe de principal *****************//
-//        Bundle extras = getIntent().getExtras();
-//        user = extras.getString("usuarioP");
-//        pass = extras.getString("contraseñaP");
-//        correo = extras.getString("correoP");
-//
-//        tMostrar.setText("Usuario:" + user + "\n" + "Correo:" + correo);
+        setContentView(R.layout.activity_cocina);
 
         inicializar();
     }
 
-    /////***** Firebase ********///
     private void inicializar() {
         firebaseAuth = FirebaseAuth.getInstance(); //inicializar los componentes de firebase, conectese al servicio en firebase
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -63,25 +41,7 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
                 //FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();//contiene la info del que se logeo
 
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
 
-                    tMostrar.setText("Usuario:" + firebaseUser.getEmail());
-                    Picasso.get().load(firebaseUser.getPhotoUrl()).into(Iperfil);
-                }
-
-//                if (firebaseUser != null) {
-////                    user = firebaseUser.getEmail();
-////                    pass = firebaseUser.getProviderId();
-////                    correo = firebaseUser.getUid();
-////
-////                    tMostrar.setText("Usuario:" + user + "\n" + "otra cosa" + pass + "\n" + correo);
-//                    Log.d("FirebaseUser", "Usuario logueado" + firebaseUser.getEmail());
-//                }
-                else{
-
-                    tMostrar.setText(null);
-                    Log.d("FirebaseUser", "NO usuario logueado, sesion cerrada");
-                }
                 //////////////////////////////// con esto, se puede entrar luego del splash a main si hay ususario
             }
         };
@@ -105,6 +65,7 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
         super.onStop();
         firebaseAuth.removeAuthStateListener(authStateListener);
         googleApiClient.disconnect();
+
     }
 
     @Override
@@ -125,61 +86,71 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
         super.onDestroy();
         googleApiClient.stopAutoManage(this);
         googleApiClient.disconnect();
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu2, menu);
+        getMenuInflater().inflate(R.menu.menu_tab, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+///////////////////*************PERFIL****************////////
         if(id == R.id.mPrincipal){
-
-            //********** los devuelvo a principal **************//
-//            Intent APrincipal = new Intent(PerfilActivity.this,PrincipalActivity.class);
-//            APrincipal.putExtra("usuarioP",user);
-//            APrincipal.putExtra("contraseñaP",pass);
-//            APrincipal.putExtra("correoP",correo);
-//            //setResult(RESULT_OK,APrincipal);
-//            //startActivityForResult(APrincipal,90);
-//            startActivity(APrincipal);
-            Intent i = new Intent(PerfilActivity.this,PrincipalActivity.class);
-            startActivity(i);
-            finish();
-            //inish();
-            //onBackPressed();
-            //Intent APrincipal = new Intent(PerfilActivity.this,PrincipalActivity.class);
-            //startActivity(APrincipal);
-            //finish();
-
-        }
-
-
-        else if (id == R.id.mCerrar){
-
-            //****** debe volver a login con los datos ****///
-//            Intent ALogin = new Intent(PerfilActivity.this,MainActivity.class);
-//            ALogin.putExtra("usuarioP",user);
-//            ALogin.putExtra("contraseñaP",pass);
-//            ALogin.putExtra("correoP",correo);
-//            setResult(RESULT_OK,ALogin);
-//            //startActivityForResult(ALogin,90);
+            /*********+ voy a perfil con los datos ***************************/
+//            Intent APerfil = new Intent(PrincipalActivity.this,PerfilActivity.class);
+//            APerfil.putExtra("usuarioP",user);
+//            APerfil.putExtra("contraseñaP",pass);
+//            APerfil.putExtra("correoP",correo);
+//            //setResult(RESULT_OK,APerfil);
+//            startActivityForResult(APerfil,78);
 //            //startActivity(APerfil);
 //
 //            finish();
+
+            Intent i = new Intent(CocinaActivity.this,PrincipalActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+        else if (id == R.id.mPerfil){
+            Intent i = new Intent(CocinaActivity.this,PerfilActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+
+        //////////********CERRAR************////////////////////
+        else if (id == R.id.mCerrar){
+            //Intent ALogin = new Intent(PrincipalActivity.this,MainActivity.class);
+//            Intent ALogin = new Intent();
+//            startActivity(ALogin);
+//            finish();
+//            // si doy cerrar sesion en principal, deberia devolver a login con los datos
+//            Intent Datosalogin = new Intent(PrincipalActivity.this,MainActivity.class);
+//            Datosalogin.putExtra("usuarioP", user);
+//            Datosalogin.putExtra("contraseñaP", pass);
+//            Datosalogin.putExtra("correoP", correo);
+//            setResult(RESULT_OK, Datosalogin);
+//            //startActivityForResult(Datosalogin, 78);
             firebaseAuth.signOut();
+
             if (Auth.GoogleSignInApi != null) {
                 Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(@NonNull Status status) {
                         if (status.isSuccess()) {
-                            goLoginActivity();
+                            Intent i = new Intent(CocinaActivity.this,MainActivity.class);
+                            startActivity(i);
+
+                            finish();
                         } else {
-                            Toast.makeText(PerfilActivity.this, "Error cerrado sesion con Google", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CocinaActivity.this, "Error cerrado sesion con Google", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -189,25 +160,12 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
             }
 
 
-
         }
-
-
-
-
         return super.onOptionsItemSelected(item);
-    }
-
-    private void goLoginActivity(){
-        Intent i = new Intent(PerfilActivity.this,MainActivity.class);
-        startActivity(i);
-        finish();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
-
 }
