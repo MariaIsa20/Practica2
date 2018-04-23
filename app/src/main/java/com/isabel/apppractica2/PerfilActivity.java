@@ -150,11 +150,6 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
             Intent i = new Intent(PerfilActivity.this,PrincipalActivity.class);
             startActivity(i);
             finish();
-            //inish();
-            //onBackPressed();
-            //Intent APrincipal = new Intent(PerfilActivity.this,PrincipalActivity.class);
-            //startActivity(APrincipal);
-            //finish();
 
         }
 
@@ -191,9 +186,6 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
 
 
         }
-
-
-
 
         return super.onOptionsItemSelected(item);
     }

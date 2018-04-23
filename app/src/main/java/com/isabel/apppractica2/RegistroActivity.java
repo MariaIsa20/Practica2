@@ -177,6 +177,7 @@ public class RegistroActivity extends AppCompatActivity {
                             Toast.makeText(RegistroActivity.this, "Cuenta creada", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(RegistroActivity.this,MainActivity.class);
                             startActivity(i);
+                            firebaseAuth.signOut(); ///NUEVO
                             finish();
                         }
                         else {

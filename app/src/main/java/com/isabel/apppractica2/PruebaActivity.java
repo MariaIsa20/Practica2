@@ -208,7 +208,7 @@ public class PruebaActivity extends AppCompatActivity {
             correo.setText(Usuarios.getCorreo());
 
             TextView telefono = item.findViewById(R.id.Ttelefono);
-            telefono.setText(Usuarios.getFoto());
+            //telefono.setText(Usuarios.getFoto());
 
             return item;
         }

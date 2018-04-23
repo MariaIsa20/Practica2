@@ -20,7 +20,7 @@ public class usuarios {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        this.foto = foto;
+        //this.foto = foto;
     }
 
 
