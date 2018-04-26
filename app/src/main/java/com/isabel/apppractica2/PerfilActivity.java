@@ -48,7 +48,7 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
 //        pass = extras.getString("contraseñaP");
 //        correo = extras.getString("correoP");
 //
-//        tMostrar.setText("Usuario:" + user + "\n" + "Correo:" + correo);
+//        tMostrar.setText("pUsuario:" + user + "\n" + "Correo:" + correo);
 
         inicializar();
     }
@@ -69,14 +69,6 @@ public class PerfilActivity extends AppCompatActivity implements GoogleApiClient
                     Picasso.get().load(firebaseUser.getPhotoUrl()).into(Iperfil);
                 }
 
-//                if (firebaseUser != null) {
-////                    user = firebaseUser.getEmail();
-////                    pass = firebaseUser.getProviderId();
-////                    correo = firebaseUser.getUid();
-////
-////                    tMostrar.setText("Usuario:" + user + "\n" + "otra cosa" + pass + "\n" + correo);
-//                    Log.d("FirebaseUser", "Usuario logueado" + firebaseUser.getEmail());
-//                }
                 else{
 
                     tMostrar.setText(null);

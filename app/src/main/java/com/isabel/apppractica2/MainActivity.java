@@ -44,7 +44,7 @@ import java.security.NoSuchAlgorithmException;
 import com.facebook.FacebookSdk;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.isabel.apppractica2.model.Usuario;
+
 
 //////////// LOGIN ACTIVITY  //////////////////
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient googleApiClient;
     private CallbackManager callbackManager;
 
-    // para guardar en la base de datos
-    //private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         inicializar();
 
-        // para guardar en la base de datos
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true); //activa persistencia
-//        databaseReference = FirebaseDatabase.getInstance().getReference(); //obtener la BD
+
 
     }
 
@@ -212,8 +209,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         }
         else {
-
-            Toast.makeText(MainActivity.this,"Autenticación con Google no exitosa", Toast.LENGTH_SHORT).show();
+            Log.d("Autenticacion","Autenticacion con Google no exitosa");
+            //oast.makeText(MainActivity.this,"Autenticación con Google no exitosa", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -271,15 +268,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
             else{
+
+
                 iniciarsesion(eUsuario.getText().toString(),eContraseña.getText().toString());
 
-                //Toast.makeText(this,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();//cambiar
+                //Toast.makeText(this,"uario o contraseña incorrecta",Toast.LENGTH_SHORT).show();//cambiar
 
             }
 
-//            Usuario usuarios = new Usuario(databaseReference.push().getKey(),
-//                    eUsuario.getText().toString());
-//            databaseReference.child("Usuarios").child(usuarios.getId()).setValue(usuarios);
 
 
             eUsuario.setText(null);
