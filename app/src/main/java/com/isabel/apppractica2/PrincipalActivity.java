@@ -14,12 +14,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PrincipalActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     TextView tPrincipal; //tTemporal2;
     String user, pass, correo,usuario,contraseña;
     Button bMesero, bCocina;
+
+    private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth; //maneja la autenticacion
     private FirebaseAuth.AuthStateListener authStateListener; //listener que escucha constantemente el usuario
@@ -29,6 +33,9 @@ public class PrincipalActivity extends AppCompatActivity implements GoogleApiCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         tPrincipal = findViewById(R.id.tPrincipal);
         //tTemporal2 = findViewById(R.id.tTemporal2);

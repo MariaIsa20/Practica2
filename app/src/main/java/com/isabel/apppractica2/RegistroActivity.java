@@ -186,4 +186,19 @@ public class RegistroActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+    protected void onStart() {//firebase
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        firebaseAuth.removeAuthStateListener(authStateListener); //firebase
+      
+    }
+
+
 }

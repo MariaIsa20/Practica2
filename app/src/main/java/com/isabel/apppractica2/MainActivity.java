@@ -42,8 +42,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.facebook.FacebookSdk;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.isabel.apppractica2.model.Usuarios;
 
 
 //////////// LOGIN ACTIVITY  //////////////////
@@ -62,31 +66,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth.AuthStateListener authStateListener; //listener que escucha constantemente el usuario
     private GoogleApiClient googleApiClient;
     private CallbackManager callbackManager;
-
-
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-//        // Add code to print out the key hash
-//        try {
-//            PackageInfo info = getPackageManager().getPackageInfo(
-//                    "com.isabel.apppractica2",
-//                    PackageManager.GET_SIGNATURES);
-//            for (Signature signature : info.signatures) {
-//                MessageDigest md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-//            }
-//        } catch (PackageManager.NameNotFoundException e) {
-//
-//        } catch (NoSuchAlgorithmException e) {
-//
-//        }
-
 
         bLogin = findViewById(R.id.bLogin);
         tcRegistro = findViewById(R.id.tcRegistro);
@@ -101,12 +89,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         texto.setSpan(new UnderlineSpan(), 0, texto.length(), 0);
         tcRegistro.setText(texto);
 
-        ///**** Firebase ***////
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         inicializar();
-
-
-
     }
 
     /////***** Firebase ********///
@@ -134,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
 
+        //Boton de Google
         signGoogle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -141,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(i,LOGIN_CON_GOOGLE);
             }
         });
-/// con Facebook
+        /// Inicia sesion con Facebook
         signFacebook.setReadPermissions("email","public_profile");
 
         signFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -165,14 +152,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     private void signInFacebook(AccessToken accessToken){
-        AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
+        final AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
 
         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+
                     Log.d("Login con Facebook","Voy a principal");
                     //Toast.makeText(MainActivity.this, "voy a principal",Toast.LENGTH_SHORT).show();
+                  /// DatabaseReference correosRegistrados = databaseReference.child("Usuarios").child("correo");
+
+                    Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                            firebaseAuth.getCurrentUser().getEmail());
+                    databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Log.d("entre 1","ok");
+                            }else{
+                                Log.d("entre 2","o");
+                                Log.d("Save",task.getException().toString());
+                            }
+                        }
+                    });
+
                     goPrincipalActivity();
                 } else {
                     Log.d("Login con Facebook","Autenticacion o exitosa");
@@ -181,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
-//// con Google
+    //// Inicia sesion con Google
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -191,18 +195,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         } else {
             callbackManager.onActivityResult(requestCode,resultCode,data);
         }
-
-
     }
 
-    private void  signInGoogle(GoogleSignInResult googleSignInResult){
+    private void  signInGoogle(final GoogleSignInResult googleSignInResult){
         if (googleSignInResult.isSuccess()){
+            Log.d("Login google","listo");
             AuthCredential authCredential = GoogleAuthProvider.getCredential(
                     googleSignInResult.getSignInAccount().getIdToken(),null
             );
             firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                            googleSignInResult.getSignInAccount().getAccount().name);
+                    databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Log.d("entre 1","ok");
+                            }else{
+                                Log.d("entre 2","o");
+                                Log.d("Save",task.getException().toString());
+                            }
+                        }
+                    });
                     goPrincipalActivity();
                 }
             });
@@ -268,38 +285,85 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
             else{
-
+                Log.d("obtenido","estoy en el else");
+                //dbusuario(eUsuario.getText().toString());
 
                 iniciarsesion(eUsuario.getText().toString(),eContraseña.getText().toString());
 
-                //Toast.makeText(this,"uario o contraseña incorrecta",Toast.LENGTH_SHORT).show();//cambiar
-
             }
-
-
-
             eUsuario.setText(null);
             eContraseña.setText(null);
-
-
         }
 
     }
+/// inicia sesion con usuario registrado
+    private void iniciarsesion(final String usuario1, String contraseña1) {
 
-    private void iniciarsesion(String usuario1,String contraseña1) {
-        firebaseAuth.signInWithEmailAndPassword(usuario1,contraseña1).
-                addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(usuario1,contraseña1).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                           goPrincipalActivity();
-                        }
-                        else {
-                            Log.d("Login","Cuenta no creada");
-                            //Toast.makeText(MainActivity.this, "cuenta NO log creada", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            dbusuario(usuario1);
+                            goPrincipalActivity();
+
+                        } else {
+                            Log.d("Login", "Cuenta no creada");
+                            Toast.makeText(MainActivity.this, "La cuenta no existe", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+        });
+    }
+
+    public void dbusuario(final String username){
+        Log.d("obtenido","dbusuario" + username);
+        //final String username = eUsuario.getText().toString().toLowerCase();
+        final boolean[] flag = {false};
+        databaseReference.child("Usuarios").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot idgenerado:  dataSnapshot.getChildren()){
+                    String usernameTaken = idgenerado.child("correo").getValue(String.class);
+                    Log.d("obtenido","nombre leido:"+ usernameTaken);
+                    Log.d("obtenido", "estado:"+ String.valueOf(flag[0]));
+                    if (username.equals(usernameTaken.toLowerCase())){ // si es igual
+                        flag[0] = true;
+
+                        Log.d("obtenido","entro al if porque el nombre es igual:"+ String.valueOf(flag[0]));
+                    }
+                }
+                if (!flag[0]){ // si es false
+                    Log.d("obtenido","estoy en el if, nombre diferente"+ username);
+                    Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                            username);
+                            Log.d("obtenido","usuario:"+eUsuario.getText().toString());
+                    databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Log.d("entre1","ok");
+                            }else{
+                                Log.d("entre 2","Ok");
+                                Log.d("Save",task.getException().toString());
+                            }
+                        }
+                    });
+                    //flag[0]=true;
+
+                }
+                else{
+                    Log.d("obtenido", "ya esta el nombre");
+                    //Toast.makeText(MainActivity.this,"Existe el nombre",Toast.LENGTH_SHORT).show();
+                }
+
+                //iniciarsesion(eUsuario.getText().toString(),eContraseña.getText().toString());
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void goPrincipalActivity(){
