@@ -5,23 +5,23 @@ package com.isabel.apppractica2.model;
  */
 
 public class Usuarios {
-    String id;
+    String id_usuario;
     String correo;
+
+    public Usuarios(String id_usuario, String correo) {
+        this.id_usuario = id_usuario;
+        this.correo = correo;
+    }
 
     public Usuarios() {
     }
 
-    public Usuarios(String id, String correo) {
-        this.id = id;
-        this.correo = correo;
+    public String getId_usuario() {
+        return id_usuario;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getCorreo() {

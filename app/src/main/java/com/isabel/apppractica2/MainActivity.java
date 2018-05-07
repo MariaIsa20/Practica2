@@ -158,12 +158,61 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    Log.d("obtenido","dbusuario" + firebaseAuth.getCurrentUser().getEmail());
+                    //final String username = eUsuario.getText().toString().toLowerCase();
+                    final boolean[] flag = {false};
+                    databaseReference.child("Usuarios").addValueEventListener(new ValueEventListener() {
 
-                    Log.d("Login con Facebook","Voy a principal");
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot idgenerado:  dataSnapshot.getChildren()){
+                                String usernameTaken = idgenerado.child("correo").getValue(String.class);
+                                Log.d("obtenido","nombre leido:"+ usernameTaken);
+                                Log.d("obtenido", "estado:"+ String.valueOf(flag[0]));
+                                if (firebaseAuth.getCurrentUser().getEmail().equals(usernameTaken.toLowerCase())){ // si es igual
+                                    flag[0] = true;
+
+                                    Log.d("obtenido","entro al if porque el nombre es igual:"+ String.valueOf(flag[0]));
+                                }
+                            }
+                            if (!flag[0]){ // si es false
+                                Log.d("obtenido","estoy en el if, nombre diferente"+ firebaseAuth.getCurrentUser().getEmail());
+                                Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                                        firebaseAuth.getCurrentUser().getEmail());
+                                Log.d("obtenido","usuario:"+eUsuario.getText().toString());
+                                databaseReference.child("Usuarios").child(usuario.getId_usuario()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Log.d("entre1","ok");
+                                        }else{
+                                            Log.d("entre 2","Ok");
+                                            Log.d("Save",task.getException().toString());
+                                        }
+                                    }
+                                });
+                                //flag[0]=true;
+
+                            }
+                            else{
+                                Log.d("obtenido", "ya esta el nombre");
+                                //Toast.makeText(MainActivity.this,"Existe el nombre",Toast.LENGTH_SHORT).show();
+                            }
+
+                            //iniciarsesion(eUsuario.getText().toString(),eContraseña.getText().toString());
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                   // Log.d("Login con Facebook","Voy a principal");
                     //Toast.makeText(MainActivity.this, "voy a principal",Toast.LENGTH_SHORT).show();
                   /// DatabaseReference correosRegistrados = databaseReference.child("Usuarios").child("correo");
 
-                    Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                   /* Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
                             firebaseAuth.getCurrentUser().getEmail());
                     databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -175,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 Log.d("Save",task.getException().toString());
                             }
                         }
-                    });
+                    });*/
 
                     goPrincipalActivity();
                 } else {
@@ -207,20 +256,72 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                    Log.d("obtenido","dbusuario" + googleSignInResult.getSignInAccount().getEmail());
+                    //final String username = eUsuario.getText().toString().toLowerCase();
+                    final boolean[] flagg = {false};
+                    databaseReference.child("Usuarios").addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot idgenerado:  dataSnapshot.getChildren()){
+                                String usernameTaken = idgenerado.child("correo").getValue(String.class);
+                                Log.d("obtenido","nombre leido:"+ usernameTaken);
+                                Log.d("obtenido", "estado:"+ String.valueOf(flagg[0]));
+                                if (googleSignInResult.getSignInAccount().getEmail().equals(usernameTaken.toLowerCase())){ // si es igual
+                                    flagg[0] = true;
+
+                                    Log.d("obtenido","entro al if porque el nombre es igual:"+ String.valueOf(flagg[0]));
+                                }
+                            }
+                            if (!flagg[0]){ // si es false
+                                Log.d("obtenido","estoy en el if, nombre diferente"+ googleSignInResult.getSignInAccount().getEmail() );
+                                Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
+                                        googleSignInResult.getSignInAccount().getEmail());
+                                Log.d("obtenido","usuario:"+eUsuario.getText().toString());
+                                databaseReference.child("Usuarios").child(usuario.getId_usuario()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Log.d("entre1","ok");
+                                        }else{
+                                            Log.d("entre 2","Ok");
+                                            Log.d("Save",task.getException().toString());
+                                        }
+                                    }
+                                });
+                                //flag[0]=true;
+
+                            }
+                            else{
+                                Log.d("obtenido", "ya esta el nombre");
+                                //Toast.makeText(MainActivity.this,"Existe el nombre",Toast.LENGTH_SHORT).show();
+                            }
+
+                            //iniciarsesion(eUsuario.getText().toString(),eContraseña.getText().toString());
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    /*Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
                             googleSignInResult.getSignInAccount().getAccount().name);
                     databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
+
                                 Log.d("entre 1","ok");
                             }else{
                                 Log.d("entre 2","o");
                                 Log.d("Save",task.getException().toString());
                             }
                         }
-                    });
+                    });*/
                     goPrincipalActivity();
+
                 }
             });
 
@@ -241,9 +342,37 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStop() {
         super.onStop();
         firebaseAuth.removeAuthStateListener(authStateListener);
+        //Nuevo
+        googleApiClient.disconnect();
     }
 
-//    @Override
+    @Override
+    protected void onPause() {
+        super.onPause();
+        googleApiClient.stopAutoManage(this);
+        googleApiClient.disconnect();
+        firebaseAuth.addAuthStateListener(authStateListener);
+        firebaseAuth.removeAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        googleApiClient.connect();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        googleApiClient.stopAutoManage(this);
+        googleApiClient.disconnect();
+        firebaseAuth.removeAuthStateListener(authStateListener);
+
+
+    }
+
+    //    @Override
 //    protected void onDestroy() {
 //        super.onDestroy();
 //        firebaseAuth.signOut();
@@ -337,7 +466,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Usuarios usuario = new Usuarios(databaseReference.push().getKey(),
                             username);
                             Log.d("obtenido","usuario:"+eUsuario.getText().toString());
-                    databaseReference.child("Usuarios").child(usuario.getId()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child("Usuarios").child(usuario.getId_usuario()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
