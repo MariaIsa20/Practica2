@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +37,8 @@ public class MenuFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    FloatingActionButton fab;
+    //FloatingActionButton fab;
+    public EditText eMesa;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -49,7 +51,9 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View itemView = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        fab = itemView.findViewById(R.id.FloatCheck);
+       // fab = itemView.findViewById(R.id.FloatCheck);
+
+        eMesa = itemView.findViewById(R.id.eMesa);
 
         recyclerView = itemView.findViewById(R.id.recyclerviewMenu);
         recyclerView.setHasFixedSize(true);
@@ -84,14 +88,14 @@ public class MenuFragment extends Fragment {
         });
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     Toast.makeText(MenuFragment.this.getContext(),"Envio lo que esta checked al otro fragment",Toast.LENGTH_SHORT).show();
+
                 }
-        });
-
-
+        });*/
 
         return itemView;
     }

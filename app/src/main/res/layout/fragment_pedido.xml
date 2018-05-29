@@ -1,13 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.isabel.apppractica2.PedidoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Aqui se observa el pedid y se envia" />
+        android:id="@+id/recyclerviewMesas"
+        android:layout_weight="1"
+        />
 
-</FrameLayout>
+</LinearLayout>

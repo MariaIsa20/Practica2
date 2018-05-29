@@ -8,6 +8,8 @@ public class Productos {
     String id;
     String nombre;
     int valor;
+    boolean isSelected;
+    int cantidad;
 
     public Productos() {
     }
@@ -16,6 +18,22 @@ public class Productos {
         this.id = id;
         this.nombre = nombre;
         this.valor = valor;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getId() {
