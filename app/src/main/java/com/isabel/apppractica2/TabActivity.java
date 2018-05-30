@@ -284,8 +284,8 @@ public class TabActivity extends AppCompatActivity implements GoogleApiClient.On
 
             switch (position){
                 case 0: return  "Menú";
-                case 1: return "Pedido";
-                case 2: return "Notificaciones";
+                case 1: return "Pedidos";
+                case 2: return "Entregas";
             }
             return super.getPageTitle(position);
         }

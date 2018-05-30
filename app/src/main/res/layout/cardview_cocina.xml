@@ -5,7 +5,8 @@
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="2dp"
+    app:cardBackgroundColor="@color/whitesmoke"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,10 +21,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="5sp"
             >
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.8"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
@@ -34,21 +37,61 @@
                     android:layout_height="0dp"
                     android:id="@+id/tNombre3"
                     android:text="Producto"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:id="@+id/tCantidad3"
-                    android:text="Cantidad"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/cantidad"
+                        android:textSize="18sp"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:id="@+id/tCantidad3"
+                        android:text="Cantidad"
+                        android:textSize="18sp"
+                        android:textColor="@color/green"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:id="@+id/tMesa3"
-                    android:text="Mesa"
-                    />
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/mesa"
+                        android:textSize="18sp"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tMesa3"
+                        android:text="Mesa"
+                        android:textSize="18sp"
+                        android:textColor="@color/green"
+                        />
+
+                </LinearLayout>
+
 
 
 
@@ -56,13 +99,16 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content">
+                android:layout_weight="0.2"
+                android:layout_height="match_parent">
+
                 <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Listo"
+                    android:layout_gravity="center"
                     android:id="@+id/bListo"
+                    android:backgroundTint="@color/green"
+                    android:background="@drawable/check2"
                     />
 
 

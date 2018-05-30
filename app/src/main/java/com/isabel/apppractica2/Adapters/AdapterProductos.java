@@ -97,7 +97,7 @@ public class AdapterProductos extends RecyclerView.Adapter<AdapterProductos.Prod
 
         }
 
-        public void bindproductos(Productos productos, Activity activity) {
+        public void bindproductos(Productos productos, final Activity activity) {
             tProducto.setText(productos.getNombre());
             tValor.setText(String.valueOf(productos.getValor()));
             eCantidad.getText().toString();
@@ -106,61 +106,68 @@ public class AdapterProductos extends RecyclerView.Adapter<AdapterProductos.Prod
             bOK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();//contiene la info del que se logeo
-                    databaseReference.child("Productos").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String user = firebaseUser.getEmail() ;
-                            String state = "Pendiente";
-                            final Pedido pedido = new Pedido(
-                                    databaseReference.push().getKey(), //id_pedido
-                                    user,
-                                    Integer.valueOf(tValor.getText().toString()),
-                                    Integer.valueOf(eCantidad.getText().toString()),
-                                    eMesa.getText().toString(),
-                                    tProducto.getText().toString(),
-                                    state
-                            );
 
-                           // String state = "Pendiente";
-                            /*Ordenes ordenes = new Ordenes(
-                                    databaseReference.push().getKey(),
-                                    eMesa.getText().toString(),
-                                    tProducto.getText().toString(),
-                                    Integer.valueOf(eCantidad.getText().toString()),
-                                    state
-                            );*/
+                    if (eMesa.getText().toString().isEmpty() || eCantidad.getText().toString().isEmpty()){
 
-                            databaseReference.child("Pedido").child(pedido.getId_pedido()).setValue(pedido).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Log.d("entre1","ok");
-                                    }else{
-                                        Log.d("entre 2","Ok");
-                                        Log.d("Save",task.getException().toString());
+                        Toast.makeText(activity,"Ingrese Mesa y Cantidad",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();//contiene la info del que se logeo
+                        databaseReference.child("Productos").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String user = firebaseUser.getEmail();
+                                String state = "Pendiente";
+                                final Pedido pedido = new Pedido(
+                                        databaseReference.push().getKey(), //id_pedido
+                                        user,
+                                        Integer.valueOf(tValor.getText().toString()),
+                                        Integer.valueOf(eCantidad.getText().toString()),
+                                        eMesa.getText().toString(),
+                                        tProducto.getText().toString(),
+                                        state
+                                );
+
+                                // String state = "Pendiente";
+                                /*Ordenes ordenes = new Ordenes(
+                                        databaseReference.push().getKey(),
+                                        eMesa.getText().toString(),
+                                        tProducto.getText().toString(),
+                                        Integer.valueOf(eCantidad.getText().toString()),
+                                        state
+                                );*/
+
+                                databaseReference.child("Pedido").child(pedido.getId_pedido()).setValue(pedido).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d("entre1", "ok");
+                                        } else {
+                                            Log.d("entre 2", "Ok");
+                                            Log.d("Save", task.getException().toString());
+                                        }
                                     }
-                                }
-                            });
+                                });
 
-                            /*databaseReference.child("Ordenes").child(ordenes.getId_orden()).setValue(ordenes).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Log.d("entre1","ok");
-                                    }else{
-                                        Log.d("entre 2","Ok");
-                                        Log.d("Save",task.getException().toString());
+                                /*databaseReference.child("Ordenes").child(ordenes.getId_orden()).setValue(ordenes).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Log.d("entre1","ok");
+                                        }else{
+                                            Log.d("entre 2","Ok");
+                                            Log.d("Save",task.getException().toString());
+                                        }
                                     }
-                                }
-                            });*/
-                        }
+                                });*/
+                            }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             });
 

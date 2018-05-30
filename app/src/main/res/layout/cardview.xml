@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/Cardproductos"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp"
-    app:cardBackgroundColor="@color/myothergreen"
+    app:cardCornerRadius="2dp"
+    app:cardBackgroundColor="@color/whitesmoke"
 
     >
 
@@ -14,28 +14,55 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_gravity="center_vertical"
         android:padding="5dp"
         >
 
-    <!--    <CheckBox
-            android:layout_width="0dp"
-            android:layout_weight="0.1"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/Check"
-
-
-
-            />-->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.8"
-            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--<TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="@string/cantidad"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />-->
+
+                <EditText
+                    android:id="@+id/eCantidad"
+                    android:layout_width="94dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Cantidad"
+                    android:inputType="number"
+                    android:textSize="16sp"
+
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
+            android:layout_marginLeft="10dp"
             >
 
             <TextView
@@ -43,8 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+
+                android:textSize="18sp"
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,62 +87,43 @@
 
                     android:text="$"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tValor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cantidad"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    />
-
-                <EditText
-                    android:id="@+id/eCantidad"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:inputType="number"
-                    android:textSize="15sp"
-
-                    />
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
 
 
             </LinearLayout>
 
 
-        </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.2"
-            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_gravity="center"
             >
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ok"
+                android:background="@drawable/check2"
+
                 android:id="@+id/bOK"
-                android:layout_gravity="center_vertical"
+                android:backgroundTint="@color/green"
 
                 />
 

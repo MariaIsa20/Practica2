@@ -12,21 +12,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/mesa"
+            android:gravity="right"
+            android:textSize="20sp"
+            android:textColor="@color/green"
 
             />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="wrap_content"
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Mesa"
-            android:id="@+id/eMesa"
-            />
+                android:layout_height="wrap_content"
+                android:hint="Mesa"
+                android:textSize="20sp"
+                android:id="@+id/eMesa"
+
+                />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

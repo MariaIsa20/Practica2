@@ -35,7 +35,9 @@
         <activity
             android:name=".TabActivity"
             android:label="@string/title_activity_tab"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".CocinaActivity" />
         <activity android:name=".DetalleActivity"></activity>
     </application>

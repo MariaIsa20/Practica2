@@ -1,10 +1,12 @@
 package com.isabel.apppractica2;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,15 +66,24 @@ public class PedidoFragment extends Fragment {
 
                 if (dataSnapshot.exists()){
                     Mesa idmesa = dataSnapshot.getValue(Mesa.class);
+                    Log.d("repetido",String.valueOf(dataSnapshot.child("id_mesa")));
 
                     for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Log.d("repetido",String.valueOf(snapshot.child("id_mesa")));
+
 
                         Mesa mesa = snapshot.getValue(Mesa.class);
-                        if (!mesa.getId_mesa().equals(idmesa.getId_mesa())){
+
+                        Log.d("repetido","mesa.getid"+mesa.getId_mesa());
+
+                        if (!mesa.getId_mesa().equals(idmesa.getId_mesa()) ){
                             mesaList.add(mesa);
-                            //idmesa.setId_mesa(mesa.getId_mesa());
+                            Log.d("repetido",mesa.getId_mesa() + idmesa.getId_mesa());
+
+                            //ids.add(mesa.getId_mesa());
                         }
                         idmesa.setId_mesa(mesa.getId_mesa());
+
                     }
                     adapterMesas.notifyDataSetChanged();
                 }

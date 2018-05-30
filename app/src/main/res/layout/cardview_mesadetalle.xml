@@ -5,7 +5,8 @@
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="2dp"
+    app:cardBackgroundColor="@color/whitesmoke"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
+            android:layout_marginLeft="10sp"
             >
             <LinearLayout
                 android:layout_width="0dp"
@@ -33,23 +35,65 @@
                     android:layout_height="0dp"
                     android:id="@+id/tNombre2"
                     android:text="nombre"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/tValor2"
-                    android:text="valor"
-                    />
+                    android:layout_height="wrap_content"
 
-                <TextView
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="$"
+                        android:textSize="18sp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/tValor2"
+                        android:text="valor"
+                        android:textSize="18sp"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/tCantidad2"
-                    android:text="cantidad"
-                    />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/cantidad"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/tCantidad2"
+                        android:text="cantidad"
+                        android:textSize="18sp"
+                        />
+
+
+
+                </LinearLayout>
+
+
 
 
 
@@ -57,13 +101,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="wrap_content">
+                android:layout_weight="0.18"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
                 <Button
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="X"
+                    android:background="@drawable/delete"
+                    android:backgroundTint="@color/green"
                     android:id="@+id/bDelete"
+                    android:gravity="center"
                     />
 
 
